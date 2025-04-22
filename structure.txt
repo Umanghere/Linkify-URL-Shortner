@@ -1,0 +1,125 @@
+Folder PATH listing for volume Data
+Volume serial number is 3A61-62DB
+D:.
+|   structure.txt
+|   
++---backend
+|   |   .env
+|   |   .prettierrc
+|   |   connection.js
+|   |   eslint.config.js
+|   |   index.js
+|   |   package-lock.json
+|   |   package.json
+|   |   
+|   +---controllers
+|   |       auth.js
+|   |       url.js
+|   |       user.js
+|   |       
+|   +---middlewares
+|   |       auth.js
+|   |       
+|   +---models
+|   |       url.js
+|   |       user.js
+|   |           
+|   +---routes
+|   |   |   auth.js
+|   |   |   
+|   |   \---apiRoutes
+|   |           index.js
+|   |           url.js
+|   |           user.js
+|   |           
+|   \---service
+|           user.js
+|    
+|     
+|     
+|     
+|            
+\---frontend
+    |   components.json
+    |   eslint.config.js
+    |   index.html
+    |   jsconfig.json
+    |   package-lock.json
+    |   package.json
+    |   postcss.config.js
+    |   README.md
+    |   tailwind.config.js
+    |   vercel.json
+    |   vite.config.js
+    |   
+    \---src
+        |   App.jsx
+        |   index.css
+        |   main.jsx
+        |   
+        +---apis
+        |       api.js
+        |       
+        +---components
+        |   |   app-sidebar.jsx
+        |   |   nav-main.jsx
+        |   |   nav-user.jsx
+        |   |   
+        |   +---DashBoardComps
+        |   |       Cards.jsx
+        |   |       Graph.jsx
+        |   |       Home.jsx
+        |   |       
+        |   +---LandingPageComps
+        |   |       Feature.jsx
+        |   |       Footer.jsx
+        |   |       Hero.jsx
+        |   |       Navbar.jsx
+        |   |       Stats.jsx
+        |   |       
+        |   +---ui
+        |   |       alert.jsx
+        |   |       avatar.jsx
+        |   |       breadcrumb.jsx
+        |   |       button.jsx
+        |   |       card.jsx
+        |   |       collapsible.jsx
+        |   |       dropdown-menu.jsx
+        |   |       input.jsx
+        |   |       label.jsx
+        |   |       separator.jsx
+        |   |       sheet.jsx
+        |   |       sidebar.jsx
+        |   |       skeleton.jsx
+        |   |       table.jsx
+        |   |       tooltip.jsx
+        |   |       
+        |   +---URLComps
+        |   |       Url.jsx
+        |   |       
+        |   \---utils
+        |           utils.js
+        |           
+        +---context
+        |       context.jsx
+        |       
+        +---hooks
+        |       use-mobile.jsx
+        |       
+        +---lib
+        |       utils.js
+        |       
+        +---pages
+        |   |   DashBoard.jsx
+        |   |   LandingPage.jsx
+        |   |   Layout.jsx
+        |   |   Login.jsx
+        |   |   Notifications.jsx
+        |   |   Signup.jsx
+        |   |   URLs.jsx
+        |   |   
+        |   \---utils
+        |           utils.js
+        |           
+        \---utils
+                utils.jsx

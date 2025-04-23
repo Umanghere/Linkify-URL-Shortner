@@ -22,36 +22,36 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
 
-// Serve React static files (production build)
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+// ✅ Serve React static files (production build) — fixed version
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
-/* cron jobs */
+/* Cron job to deactivate expired URLs */
 async function deactivateUrls() {
-    try {
-        const now = new Date();
-
-        const result=await URL.updateMany(
-            { "urls.isActive": true, "urls.expiresAt": { $lt: now } },
-            { $set: { "urls.$[].isActive": false } }
-        )
-        console.log(`${result.modifiedCount} user(s) had expired URLs deactivated.`);
-    } catch (error) {
-      console.error("Error deactivating expired URLs:", error.message);
-    }
+  try {
+    const now = new Date();
+    const result = await URL.updateMany(
+      { "urls.isActive": true, "urls.expiresAt": { $lt: now } },
+      { $set: { "urls.$[].isActive": false } }
+    );
+    console.log(`${result.modifiedCount} user(s) had expired URLs deactivated.`);
+  } catch (error) {
+    console.error("Error deactivating expired URLs:", error.message);
+  }
 }
 
 cron.schedule("* * * * *", () => {
-    console.log("Running expiration check for URLs...");
-    deactivateUrls();
-})
+  console.log("Running expiration check for URLs...");
+  deactivateUrls();
+});
 
+/* Short URL redirect route */
 app.get("/:id", getURLHandler);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
+  console.log(`Frontend is served at http://localhost:${PORT}`);
 });

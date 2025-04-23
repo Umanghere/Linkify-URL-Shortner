@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
@@ -21,6 +22,13 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
 
+// Serve React static files (production build)
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
+});
 
 /* cron jobs */
 async function deactivateUrls() {

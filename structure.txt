@@ -2,6 +2,9 @@ Folder PATH listing for volume Data
 Volume serial number is 3A61-62DB
 D:.
 |   structure.txt
+|   package.json
+|   package-lock.json
+|   .gitignore
 |   
 +---backend
 |   |   .env

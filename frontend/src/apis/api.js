@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = "https://linkify-backend-two.vercel.app";
+const host = "https://linkify-backend-sg7w.onrender.com";
 // const host = "http://localhost:4000";
 
 const API = axios.create({

@@ -10,11 +10,23 @@ const URL = require("./models/url");
 require("dotenv").config();
 connection();
 
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 /* Middlewares */
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://linkify-frontend-sooty.vercel.app"
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // or frontend deployed URL later
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 }));
 app.use(express.json());
@@ -29,8 +41,8 @@ async function deactivateUrls() {
     const now = new Date();
     const result = await URL.updateMany(
       { "urls.isActive": true, "urls.expiresAt": { $lt: now } },
-      { $set: { "urls.$[].isActive": false }
-    });
+      { $set: { "urls.$[].isActive": false } }
+    );
     console.log(`${result.modifiedCount} user(s) had expired URLs deactivated.`);
   } catch (error) {
     console.error("Error deactivating expired URLs:", error.message);
@@ -45,4 +57,7 @@ cron.schedule("* * * * *", () => {
 /* Short URL redirect route */
 app.get("/:id", getURLHandler);
 
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+  console.log(`Frontend is served at http://localhost:${PORT}`);
+});

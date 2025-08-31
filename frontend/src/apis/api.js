@@ -1,7 +1,13 @@
 import axios from "axios";
 
-// Use environment variables for the host URL
-const host = import.meta.env.VITE_HOST;
+// Dynamic host selection based on environment
+const isDevelopment = import.meta.env.MODE === 'development';
+const host = isDevelopment 
+  ? import.meta.env.VITE_BACKEND_URL_DEV
+  : import.meta.env.VITE_BACKEND_URL_PROD;
+
+
+console.log(`Using backend: ${host} (Mode: ${import.meta.env.MODE})`);
 
 const API = axios.create({
     baseURL: host,
